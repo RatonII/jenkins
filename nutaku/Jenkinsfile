@@ -1,9 +1,13 @@
 pipeline {
     agent any
-    git 'https://github.com/RatonII/ansible_roles.git'
+ 	options {
+   	 skipDefaultCheckout true
+  	}
     stages {
         stage('Build') {
             steps {
+		checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+     					    userRemoteConfigs: [[url: 'https://github.com/RatonII/ansible_roles.git']]])	
                 echo 'Building..'
             }
         }
