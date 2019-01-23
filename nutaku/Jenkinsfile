@@ -9,6 +9,7 @@ pipeline {
 		checkout([$class: 'GitSCM', branches: [[name: '*/master']],
      					    userRemoteConfigs: [[url: 'https://github.com/RatonII/ansible_roles.git']]])	
                 echo 'Building..'
+		sh "ls -la"
             }
         }
         stage('Test') {
@@ -19,6 +20,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+		sh "ls -la roles"
             }
         }
     }
