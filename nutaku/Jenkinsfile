@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    git 'https://github.com/RatonII/ansible_roles.git'
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
