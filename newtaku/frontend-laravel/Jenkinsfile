@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+ 	options {
+   	 skipDefaultCheckout true
+  	}
+    stages {
+        stage('Build') {
+            steps {
+		checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+     					    userRemoteConfigs: [[url: 'https://github.com/RatonII/ansible_roles.git']]])	
+                echo 'Building..'
+		sh "ls -la"
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+		sh "ls -la roles"
+            }
+        }
+    }
+}
